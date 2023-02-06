@@ -24,7 +24,7 @@ ___
 
 | Service                  | URL                                                      | USAGE                                                           |
 |--------------------------|----------------------------------------------------------|-----------------------------------------------------------------|
-| __API__                  | [http://localhost:8080](http://localhost:8080)           | Express server to manage assignments                            |
+| __API__                  | [http://localhost:8080](http://localhost:8080)           | Express server                                                  |
 | __API documentation__    | [http://localhost:8080/docs](http://localhost:8080/docs) | Swagger documentation to directly use API call                  |
 | __Mongo express client__ | [http://localhost:8081](http://localhost:8081)           | Mongo express client                                            |
 ___
