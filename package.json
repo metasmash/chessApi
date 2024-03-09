@@ -35,7 +35,8 @@
         "@types/jsonwebtoken": "^8.5.9",
         "@types/lodash": "^4.14.191",
         "@types/mongoose": "^5.11.97",
-        "nodemon": "^2.0.20"
+        "nodemon": "^2.0.20",
+        "prettier": "3.2.5"
     },
     "prettier": {
         "trailingComma": "es5",

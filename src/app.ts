@@ -1,11 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import {
-    serve as swaggerServe,
-    setup as swaggerSetup,
-} from 'swagger-ui-express'
-import docs from 'docs'
 import routes from 'routes'
 
 const app = express()
@@ -30,7 +25,6 @@ app.use(function (req, res, next) {
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
-app.use(bodyParser.text())
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
