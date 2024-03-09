@@ -7,7 +7,6 @@ import {
 } from 'swagger-ui-express'
 import docs from 'docs'
 import routes from 'routes'
-import { generateAdmin } from 'helpers/dataGeneratorHelpers'
 
 const app = express()
 
@@ -31,19 +30,10 @@ app.use(function (req, res, next) {
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
+app.use(bodyParser.text())
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-
-const options = {
-    swaggerOptions: { persistAuthorization: true },
-}
-
-// doc accessible in /docs route
-app.use('/docs', swaggerServe, swaggerSetup(docs, options))
-
-// create an admin when the server starts
-app.listen(generateAdmin)
 
 // use routes architecture
 app.use('/', routes)
