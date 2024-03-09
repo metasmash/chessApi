@@ -1,28 +1,23 @@
 import _ from 'lodash'
 import { RequestHandler } from 'express'
+import { Move } from 'chess.js'
+import { moveToAlgebraic } from '../../helpers/chessHelpers'
 
 const parsePgn: RequestHandler = async (req, res) => {
-    const pgn = [req.body]
-    console.log(pgn)
+    try {
+        const pgn = [req.body]
 
-    let cjs = require('chess.js')
-    let chess = new cjs.Chess()
+        let cjs = require('chess.js')
+        let chess = new cjs.Chess()
 
-    chess.loadPgn(pgn.join('\n'))
-    let moveHistory = chess.history({ verbose: true })
-    let moves: string[] = []
-    const formattedMoves = _.reduce(
-        moveHistory,
-        (acc, move, index) => {
-            const nextMove = moveHistory[index + 1]
-            const p1c = move.from + '-' + move.to
-            const p2c = nextMove ? nextMove.from + '-' + nextMove.to : ''
-            return { ...acc, [index + 1]: { white: p1c, black: p2c } }
-        },
-        {}
-    )
+        await chess.loadPgn(pgn.join('\n'))
+        let moveHistory: Move[] = chess.history({ verbose: true })
+        const formattedMoves = moveToAlgebraic(moveHistory)
 
-    res.json(formattedMoves)
+        res.json(formattedMoves)
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
 }
 
 export default parsePgn
